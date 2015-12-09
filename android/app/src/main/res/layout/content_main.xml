@@ -12,4 +12,11 @@
     tools:context="andytran.errand.MainActivity"
     tools:showIn="@layout/activity_main">
 
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_view_errands"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

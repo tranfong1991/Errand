@@ -8,8 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ArrayList<Errand> errands;
+    private ErrandAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        adapter = new ErrandAdapter(this, errands);
+
+        final ListView expandableListView = (ListView)findViewById(R.id.list_view_errands);
+        expandableListView.setAdapter(adapter);
     }
 
     @Override
