@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -40,7 +43,7 @@ public class ErrandAdapter extends ArrayAdapter<Errand> {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rowView = inflater.inflate(R.layout.errand, null);
 
-            ViewHolder viewHolder = new ViewHolder();
+            final ViewHolder viewHolder = new ViewHolder();
             viewHolder.customerPic = (CircleImageView) rowView.findViewById(R.id.profile_image);
             viewHolder.compensation = (TextView) rowView.findViewById(R.id.errand_compensation);
             viewHolder.description = (TextView) rowView.findViewById(R.id.errand_description);
