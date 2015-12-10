@@ -34,10 +34,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        errands = new ArrayList<>();
         adapter = new ErrandAdapter(this, errands);
 
-        final ListView expandableListView = (ListView)findViewById(R.id.list_view_errands);
-        expandableListView.setAdapter(adapter);
+        final ListView listView = (ListView)findViewById(R.id.list_view_errands);
+        listView.setAdapter(adapter);
     }
 
     @Override
