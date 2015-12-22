@@ -74,8 +74,19 @@
           <h1>Errand</h1>
           <hr>
           <p>Get Things Done!</p>
-          <a class="btn btn-primary btn-xl page-scroll">Sign Up</a>
-	  <a class="btn btn-default btn-xl page-scroll">Sign In</a>
+	  <span id="paypalLogin"></span>
+	  <script src="https://www.paypalobjects.com/js/external/api.js"></script>
+	  <script>
+	    paypal.use( ["login"], function(login) {
+	    login.render ({
+	    "appid": "AZcEGlwWPGJcRIq6OTiFwqsJ51IOawGZmutkNdRqOSJbSyNnFwG5ewHpcdyVYw248v79rV86tGzCRcQ5",
+	    "authend": "sandbox",
+	    "scopes": "profile email address phone https://uri.paypal.com/services/paypalattributes",
+	    "containerid": "paypalLogin",
+	    "locale": "en-us",
+	    });
+	    });
+	  </script>
         </div>
       </div>
     </header>
