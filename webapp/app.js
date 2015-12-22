@@ -5,6 +5,7 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + "/client/views/index.html");
 });
 
+//shortens the path
 app.use('/js', express.static(__dirname + '/client/js'));
 app.use('/css', express.static(__dirname + '/client/css'));
 app.use('/font-awesome', express.static(__dirname + '/client/font-awesome'));
