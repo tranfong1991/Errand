@@ -1,0 +1,14 @@
+var Errand = require('../models/errand');
+
+module.exports.create = function(req, res){
+    var errand = new Errand({name:'Andy Tran'});
+    errand.save(function(err, result){
+	res.json(result);
+    });
+}
+
+module.exports.list = function(req, res){
+    Errand.find({}, function(err, result){
+	res.json(result);
+    });
+}
