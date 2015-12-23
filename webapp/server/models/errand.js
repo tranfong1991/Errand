@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-//mongo pluralizes nouns. In this case, mongo will put errand in collection 'errands'
-module.exports = mongoose.model('errand', {
-    name: String
+var ErrandSchema = new Schema({
+	name: String
 });
+
+var Errand = mongoose.model('Errand', ErrandSchema);
+
+module.exports = Errand;
