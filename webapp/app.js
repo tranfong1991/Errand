@@ -27,6 +27,9 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname + "/client/views/index.html");
 });
 
+app.get('/errandl', errandController.list);
+app.get('/userl', userController.list);
+
 app.listen(3000, function(){
     console.log("Listening on port 3000...");
 });

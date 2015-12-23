@@ -10,6 +10,8 @@ module.exports.create = function(req, res){
 
 module.exports.list = function(req, res){
     Errand.find({}, function(err, result){
-		res.send(result);
+    	Errand.populate(result, {path:'customer'}, function(err, result){
+    		res.json(result);
+    	});
     });
 }

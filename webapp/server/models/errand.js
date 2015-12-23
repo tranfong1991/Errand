@@ -2,7 +2,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ErrandSchema = new Schema({
-	name: String
+	description: String,
+	startTime: String,
+	endTime: String,
+	customer: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	}
 });
 
 var Errand = mongoose.model('Errand', ErrandSchema);

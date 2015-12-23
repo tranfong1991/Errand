@@ -10,6 +10,6 @@ module.exports.create = function(req, res){
 
 module.exports.list = function(req, res){
     User.find({}, function(err, result){
-		res.send(result);
+		res.json(result);
     });
 }
