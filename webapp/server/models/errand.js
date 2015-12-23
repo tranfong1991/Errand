@@ -8,7 +8,7 @@ var ErrandSchema = new Schema({
 	compensation: Number,
 	customer: {
 		type: Schema.Types.ObjectId,
-		ref: 'User'
+		ref: 'User'	//refer to actual User object
 	}
 });
 

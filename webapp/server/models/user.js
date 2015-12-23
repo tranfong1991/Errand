@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-	fbId: String,
+	id: String,
 	name: String,
 	profilePicUrl: String
 });
