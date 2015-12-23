@@ -1,26 +1,46 @@
 var User = require('../models/user');
 var utils = require('../utils.js');
 
-module.exports.create = function(req, res){
-    var user = new User(req.body);
+module.exports = {
+	create : function(req, res){
+	    var user = new User(req.body);
 
-    user.save(function(err, result){
-		res.send(200);
-    });
-}
+	    user.save(function(err){
+			if(err)
+				utils.handleCreateError(res);
+			else utils.handleSuccess(res);
+	    });
+	},
 
-module.exports.listAll = function(req, res){
-    User.find({}, function(err, result){
-    	if(result == null)
-    		utils.handleNullResult(res);
-		else res.json(result);
-    });
-}
+	listAll : function(req, res){
+	    User.find({}, function(err, result){
+	    	if(result == null)
+	    		utils.handleNullResult(res);
+			else res.json(result);
+	    });
+	},
 
-module.exports.listOne = function(req, res){
-	User.findById(req.params.id, function(err, result){
-		if(result == null)
-			utils.handleNullResult(res);
-		else res.json(result);
-	});
+	listOne : function(req, res){
+		User.findById(req.params.id, function(err, result){
+			if(result == null)
+				utils.handleNullResult(res);
+			else res.json(result);
+		});
+	},
+
+	remove : function(req, res){
+		User.remove({id:req.params.id}, function(err){
+			if(err)
+				utils.handleRemoveError(res);
+			else utils.handleSuccess(res);
+		});
+	},
+
+	update : function(req, res){
+		User.update({id:req.params.id}, {$set:req.body}, function(err){
+			if(err)
+				utils.handleUpdateError(res);
+			else utils.handleSuccess(res);
+		});
+	}
 }

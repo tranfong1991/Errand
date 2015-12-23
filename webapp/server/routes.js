@@ -8,12 +8,16 @@ module.exports = function(app){
 	//===== Errand =====
 	app.get('/api/errands', errandController.listAll);
 	app.get('/api/errands/:id', errandController.listOne);
-	//app.post('/api/errands');
+	app.post('/api/errands', errandController.create);
+	app.delete('/api/errands/:id', errandController.remove)
+	app.put('/api/errands/:id', errandController.update);
 
 	//===== User =====
 	app.get('/api/users', userController.listAll);
 	app.get('/api/users/:id', userController.listOne);
-	//app.post('/api/users');
+	app.post('/api/users', userController.create);
+	app.delete('/api/users/:id', userController.remove);
+	app.put('/api/users/:id', userController.update);
 
 	//===== MAIN APPLICATION =====
 
