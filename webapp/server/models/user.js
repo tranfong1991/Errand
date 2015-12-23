@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
+	fbId: String,
 	name: String,
-	gender: String
+	profilePicUrl: String
 });
 
 var User = mongoose.model('User', UserSchema);

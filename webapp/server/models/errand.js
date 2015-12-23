@@ -5,6 +5,7 @@ var ErrandSchema = new Schema({
 	description: String,
 	startTime: String,
 	endTime: String,
+	compensation: Number,
 	customer: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'

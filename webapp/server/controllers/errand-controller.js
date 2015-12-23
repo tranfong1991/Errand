@@ -1,7 +1,7 @@
 var Errand = require('../models/errand');
 
 module.exports.create = function(req, res){
-    var errand = new Errand({name:'texas a&m'});
+    var errand = new Errand(req.body);
 
     errand.save(function(err, result){
 		res.send(200);
