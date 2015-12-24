@@ -6,9 +6,14 @@ var ErrandSchema = new Schema({
 	startTime: String,
 	endTime: String,
 	compensation: Number,
+	isTaken: Boolean,
 	customer: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'	//refer to actual User object
+	},
+	runner: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
 	}
 });
 

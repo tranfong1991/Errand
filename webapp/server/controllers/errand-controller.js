@@ -49,6 +49,7 @@ module.exports = {
 	},
 
 	update : function(req, res){
+		//$set operator is used to modify some of the field values
 		Errand.update({id:req.params.id}, {$set:req.body}, function(err){
 			if(err)
 				utils.handleUpdateError(res);
