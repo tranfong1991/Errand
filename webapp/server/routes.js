@@ -26,4 +26,8 @@ module.exports = function(app){
 		//use path.join to traverse __dirname up one dir in this case
 		res.sendFile(path.join(__dirname, "../client/views/index.html"));
 	});
+
+	app.get('/test', function(req, res){
+		res.sendFile(path.join(__dirname, "../client/views/main.html"));
+	});
 }
