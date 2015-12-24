@@ -5,7 +5,15 @@ var UserSchema = new Schema({
 	id: String,
 	name: String,
 	profilePicUrl: String,
-	paymentAccount: String
+	paymentAccount: String,
+	listedErrands: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Errand'
+	}],
+	takenErrands: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Errand'
+	}]
 });
 
 var User = mongoose.model('User', UserSchema);

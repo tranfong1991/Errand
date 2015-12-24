@@ -27,6 +27,16 @@ module.exports = function(app){
 		res.sendFile(path.join(__dirname, "../client/views/index.html"));
 	});
 
+	app.get('/login', function(req, res){
+		var user = {
+			id : req.body.id,
+			name : req.body.name,
+			profilePicUrl: req.body.url
+		}
+
+		res.render(path.join(__dirname, "../client/views/main.html"), user);
+	});
+
 	app.get('/test', function(req, res){
 		res.sendFile(path.join(__dirname, "../client/views/main.html"));
 	});
