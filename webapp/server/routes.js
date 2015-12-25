@@ -17,6 +17,8 @@ module.exports = function(app){
 	app.delete('/api/errands/:id', errandController.remove)
 	app.put('/api/errands/:id', errandController.update);
 
+	hello;
+
 	//================
 	//===== User =====
 	//================
