@@ -31,13 +31,10 @@ module.exports = function(app){
 		var user = {
 			id : req.body.id,
 			name : req.body.name,
-			profilePicUrl: req.body.url
-		}
+			profilePicUrl: req.body.url,
+			paymentAccount: req.body.account
+		};
 
 		res.render(path.join(__dirname, "../client/views/main.html"), user);
-	});
-
-	app.get('/test', function(req, res){
-		res.sendFile(path.join(__dirname, "../client/views/main.html"));
 	});
 }
