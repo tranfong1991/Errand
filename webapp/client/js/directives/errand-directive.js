@@ -4,6 +4,6 @@ app.directive('errand', function(){
 		'scope': {
 			'info': '='
 		},
-		'templateUrl': 'js/directives/errand.html'
+		'templateUrl': 'js/directives/errand-directive.html'
 	}
 });

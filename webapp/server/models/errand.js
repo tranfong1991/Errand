@@ -22,6 +22,7 @@ var ErrandSchema = new Schema({
 	modifiedAt: {type: Date, default: Date.now}
 });
 
+//before saving, populate createdAt and modifiedAt fields
 ErrandSchema.pre('save', function(next){
 	var now = new Date();
 
