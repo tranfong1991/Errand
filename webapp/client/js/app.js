@@ -1,4 +1,4 @@
-var app = angular.module('errandApp', []);
+var app = angular.module('errandApp', ['ngResource', 'ui.bootstrap']);
 
 //fit string in a limited space by only display 10 characters
 app.filter('fit', function(){
