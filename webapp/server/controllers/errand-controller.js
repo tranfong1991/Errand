@@ -1,6 +1,7 @@
+const LIMIT_PER_PAGE = 12;
+
 var Errand = require('../models/errand');
 var utils = require('../utils');
-const LIMIT_PER_PAGE = 12;
 
 module.exports = {
 	create : function(req, res){
@@ -14,7 +15,8 @@ module.exports = {
 	},
 
 	listAll : function(req, res){
-	    Errand.paginate({}, { page: req.query.page, limit: LIMIT_PER_PAGE }, function(err, result){
+	    Errand.paginate({}, { page: (req.query.page ? req.query.page : 1), limit: LIMIT_PER_PAGE }, 
+	    	function(err, result){
 	    	if(result == null)
 	    		utils.handleNullResult(res);
 	    	else {
