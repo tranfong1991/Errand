@@ -12,6 +12,10 @@ body {
     margin-bottom: 25px;
 }
 
+.portfolio-item:hover{
+    background-color: #f05f40;
+}
+
 .special-img 
 {
     position: relative;
