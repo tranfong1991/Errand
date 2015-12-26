@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var Schema = mongoose.Schema;
 
 //when using Date, need to call markModified() before save. Otherwise, mongoose is unaware of the change
@@ -30,6 +31,9 @@ ErrandSchema.pre('save', function(next){
 
 	next();
 });
+
+//add paginate plugin to errand schema
+ErrandSchema.plugin(mongoosePaginate);
 
 var Errand = mongoose.model('Errand', ErrandSchema);
 
