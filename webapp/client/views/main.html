@@ -1,162 +1,68 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="errandApp">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Errand - Get Things Done!</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/4-col-portfolio.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" type="text/css" href="css/creative.css"> -->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body ng-controller="errandController">
-
-    <script type="text/javascript">
-        window.fbAsyncInit = function() {
-            FB.init({
-              appId      : '431794573679228',
-              cookie     : true,  // enable cookies to allow the server to access the session
-              xfbml      : true,  // parse social plugins on this page
-              version    : 'v2.2' // use version 2.2
-            });
-        };
-
-        // Load the SDK asynchronously
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Errand</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
-                            <img src="http://placehold.it/30x30" class="img-circle special-img"> {{username}}<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-cog"></i> Account</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Log out</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <!-- Page Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Errands
-                    <small> near College Station, TX</small>
-                </h1>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Populate multiple errand template by using ng-repeat -->
-        <div ng-repeat="errand in errands">
-            <!-- Custom errand template using custom angular directive -->
-            <errand info="errand"></errand>
-        </div>
-
-        <hr>
-
-        <!-- Pagination -->
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <pagination
-                    total-items="totalItems"
-                    ng-model="currentPage"
-                    ng-change="pageChanged()"
-                    max-size="maxSize"
-                    items-per-page="itemsPerPage"
-                    boundary-links="true">
-                </pagination>
-            </div>
-        </div>
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Designed and implements by
-                    <a target="_blank" href="http://tranandy.com">Andy Tran</a></p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
-
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Errand</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+            <img src="http://placehold.it/30x30" class="img-circle special-img"> {{username}}<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#"><i class="fa fa-cog"></i> Account</a></li>
+              <li class="divider"></li>
+              <li><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Log out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
+  </nav>
 
-    <!-- jQuery -->
-    <script src="js/shared/jquery.js"></script>
+  <!-- Page Content -->
+  <div class="container">
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/shared/bootstrap.min.js"></script>
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">Errands
+          <small> near College Station, TX</small>
+        </h1>
+      </div>
+    </div>
+    <!-- /.row -->
 
-    <!-- AngularJS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js"></script>
-    <script src="js/shared/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <!-- Populate multiple errand template by using ng-repeat -->
+    <div ng-repeat="errand in errands">
+      <!-- Custom errand template using custom angular directive -->
+      <errand info="errand"></errand>
+    </div>
 
-    <!-- Modules -->
-    <script type="text/javascript" src="js/app.js"></script>
+    <hr>
 
-    <!-- Controllers -->
-    <script type="text/javascript" src="js/controllers/errand-controller.js"></script>
+    <!-- Pagination -->
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <pagination
+        total-items="totalItems"
+        ng-model="currentPage"
+        ng-change="pageChanged()"
+        max-size="maxSize"
+        items-per-page="itemsPerPage"
+        boundary-links="true">
+      </pagination>
+    </div>
+  </div>
 
-    <!-- Directives -->
-    <script type="text/javascript" src="js/directives/errand-directive.js"></script>
-
-    <!-- Services -->
-    <script type="text/javascript" src="js/services/errand-service.js"></script>
-
-    <!-- Filters -->
-    <script type="text/javascript" src="js/filters.js"></script>
-</body>
-
-</html>
+  <hr>

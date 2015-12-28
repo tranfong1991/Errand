@@ -34,7 +34,7 @@ module.exports = function(app){
 	//return homepage
 	app.get('/', function(req, res){
 		//use path.join to traverse __dirname up one dir in this case
-		res.sendFile(path.join(__dirname, "../client/views/index.html"));
+		res.sendFile(path.join(__dirname, "../client/index.html"));
 	});
 
 	//return main page after logged in

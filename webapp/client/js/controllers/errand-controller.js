@@ -14,13 +14,6 @@ app.controller('errandController', ['$scope', 'Errand', function($scope, Errand)
 		});
 	};
 
-	$scope.logout = function(){
-	    FB.logout(function(response){
-	        window.location.href = '/';
-	    });
-	    return false;
-	}
-
 	//call when the first time the page load to retrieve errands from server
 	$scope.pageChanged();
 }]);
