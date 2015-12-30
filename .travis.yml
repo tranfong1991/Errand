@@ -1,2 +1,7 @@
 language: node_js
-sudo: required
+node_js:
+	- "0.10"
+service:
+	- "mongodb"
+env:
+	- NODE_ENV=travis
