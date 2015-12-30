@@ -5,3 +5,5 @@ services:
  - mongodb
 env:
  - NODE_ENV=travis
+script: 
+ - echo "hello Travis!"
