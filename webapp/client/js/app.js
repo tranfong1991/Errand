@@ -1,19 +1,18 @@
 var app = angular.module('ErrandApp', ['ngResource', 'ui.bootstrap', 'ngRoute']);
 
-app.config(['$routeProvider', function($routeProvider){
-  $routeProvider
-  .when('/', {
-    templateUrl: 'views/home.html',
-    css: 'css/creative.css'
-  })
-  .when('/main', {
-    controller: 'js/controllers/errand-controller.js',
-    templateUrl: 'views/main.html'
-  })
-  .otherwise({
-    redirectTo: '/'
-  });
-}]);
+// app.config(['$routeProvider', function($routeProvider){
+//   $routeProvider
+//     .when('/', {
+//       templateUrl: 'partials/home.html',
+//     })
+//     .when('/main', {
+//       controller: 'js/controllers/errand-controller.js',
+//       templateUrl: 'partials/main.html'
+//     })
+//     .otherwise({
+//       redirectTo: '/'
+//     });
+// }]);
 
 //run() is executed when the injector is done loading all modules
 app.run(['$rootScope', '$window', function($rootScope, $window){

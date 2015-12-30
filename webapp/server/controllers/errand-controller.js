@@ -15,7 +15,7 @@ module.exports = {
 	},
 
 	listAll : function(req, res){
-	    Errand.paginate({}, { page: (req.query.page ? req.query.page : 1), limit: LIMIT_PER_PAGE }, 
+	    Errand.paginate({}, { page: (req.query.page ? req.query.page : 1), limit: LIMIT_PER_PAGE },
 	    	function(err, result){
 	    	if(result == null)
 	    		utils.handleNullResult(res);
@@ -40,6 +40,17 @@ module.exports = {
 					else res.json(result);
 				});
 			}
+		});
+	},
+
+	search : function(req, res){
+		Errand.find({
+			$text:{
+				$search: req.query.term
+			}
+		})
+		.exec(function(err, result){
+			res.json(result);
 		});
 	},
 

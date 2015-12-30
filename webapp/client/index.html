@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ErrandApp" >
 
   <head>
 
@@ -33,9 +33,123 @@
 	<![endif]-->
 
   </head>
-  <body ng-app="ErrandApp">
+  <body ng-controller="errandController">
 
-    <div ng-view></div>
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand page-scroll" href="#page-top">Errand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a class="page-scroll" href="#about">About</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#hiw">How It Works</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#contact">Contact</a>
+            </li>
+            <!-- <li id="loginButton">
+              <button class="btn btn-primary navbar-btn" ng-click="login();">Sign up / Login</button>
+            </li>
+            <li class="dropdown" id="user" style="display:none;">
+              <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+                <img src="http://placehold.it/30x30" class="img-circle special-img"> Andy Tran<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="fa fa-cog"></i> Account</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Log out</a></li>
+                </ul>
+              </li> -->
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+
+    <header>
+      <div class="header-content">
+        <div class="header-content-inner">
+          <h1>Errand</h1>
+          <hr>
+          <p>Get Things Done!</p>
+
+          <div class="col-md-12">
+            <div id="custom-search-input">
+              <div class="input-group col-md-12">
+                <input type="text" ng-model="queryString" search-enter = "submit(queryString)"
+                  class="form-control input-lg" placeholder="Search by area or keyword..." />
+                <span class="input-group-btn">
+                  <button class="btn btn-info btn-lg" type="button">
+                    <i class="glyphicon glyphicon-search" ng-click="submit(queryString)"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 text-center">
+            <h2 class="section-heading">Errands near College Station</h2>
+            <hr class="primary">
+          </div>
+
+          <!-- Populate multiple errand template by using ng-repeat -->
+          <div ng-repeat="errand in errands">
+            <!-- Custom errand template using custom angular directive -->
+            <errand info="errand"></errand>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 text-center">
+            <h2 class="section-heading">Let's Get In Touch!</h2>
+            <hr class="primary">
+            <div class="col-lg-12 text-center">
+              <ul class="list-inline">
+                <li>
+                  <a href="mailto:andytran@aggienetwork.com"><i class="fa fa-2x fa-envelope"></i></a>
+                </li>
+                <li>
+                  <a target="_blank" href="http://www.linkedin.com/in/andyntran"><i class="fa fa-2x fa-linkedin"></i></a>
+                </li>
+                <li>
+                  <a target="_blank" href="http://www.facebook.com/AndyTran1991"><i class="fa fa-2x fa-facebook"></i></a>
+                </li>
+                <li>
+                  <a target="_blank" href="http://www.challengepost.com/tran_fong1991"><i class="fa fa-2x fa-code"></i></a>
+                </li>
+                <li>
+                  <a target="_blank" href="http://www.github.com/tranfong1991"><i class="fa fa-2x fa-github"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="text-center">
       <div class="footer-below bg-dark">
@@ -77,9 +191,11 @@
 
     <!-- Directives -->
     <script type="text/javascript" src="js/directives/errand-directive.js"></script>
+    <script type="text/javascript" src="js/directives/search-directive.js"></script>
 
     <!-- Services -->
     <script type="text/javascript" src="js/services/errand-service.js"></script>
+    <script type="text/javascript" src="js/services/search-service.js"></script>
 
     <!-- Filters -->
     <script type="text/javascript" src="js/filters.js"></script>

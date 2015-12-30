@@ -1,4 +1,5 @@
-app.controller('errandController', ['$scope', 'Errand', function($scope, Errand){
+app.controller('errandController', ['$scope', 'Errand', 'Search',
+	function($scope, Errand, Search){
 	$scope.errands = [];
 
 	$scope.pageChanged = function(){
@@ -16,4 +17,10 @@ app.controller('errandController', ['$scope', 'Errand', function($scope, Errand)
 
 	//call when the first time the page load to retrieve errands from server
 	$scope.pageChanged();
+
+	$scope.submit = function(queryString){
+			Search.query({'term': queryString}, function(result){
+				$scope.errands = result;
+			});
+	};
 }]);

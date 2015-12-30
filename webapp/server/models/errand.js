@@ -36,6 +36,8 @@ ErrandSchema.pre('save', function(next){
 //add paginate plugin to errand schema
 ErrandSchema.plugin(mongoosePaginate);
 
+ErrandSchema.index({description: "text"});
+
 var Errand = mongoose.model('Errand', ErrandSchema);
 
 module.exports = Errand;
