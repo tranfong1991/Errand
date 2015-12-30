@@ -7,7 +7,8 @@ module.exports = function(app){
 	//===== REST API =====
 	//====================
 
-	//cannot use /api/errands/search because it thinks the word 'search' is the id, thus search() will never be called
+	//cannot use /api/errands/search because it thinks the word 'search' is the id,
+	//resulting in search() will never be called
 	app.get('/api/search', errandController.search);
 
 	//==================
@@ -36,12 +37,12 @@ module.exports = function(app){
 
 	//return homepage
 	app.get('/', function(req, res){
-		//use path.join to traverse __dirname up one dir in this case
 		res.render('pages/index');
 	});
 
+	//return search page
 	app.get('/search', function(req, res){
-		res.render('partials/test', {
+		res.render('pages/search', {
 
 		});
 	});
