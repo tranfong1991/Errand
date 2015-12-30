@@ -1,1 +1,0 @@
-console.log("Hello Travis from test.js");
