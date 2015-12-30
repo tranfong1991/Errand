@@ -4,6 +4,12 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var database = require('./config/database');
 
+//set the view engine to ejs
+app.set('view engine', 'ejs');
+
+//by default, res.render() looks at /views folder. Have to change it to /client folder
+app.set('views', __dirname + '/client');
+
 //mongo pluralizes nouns. In this case, mongo will put errand in collection 'errands'
 mongoose.connect(database.url);	//connect to mongodb database
 
