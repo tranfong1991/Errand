@@ -10,10 +10,7 @@
     "express-paginate": "^0.1.0",
     "mongoose": "~4.3.3"
   },
-  "devDependencies": {
-    "jshint": "^2.6.0"
-  },
-  "scripts":{
-    "test":"./node_modules/jshint/bin/jshint server.js"
+  "scripts": {
+    "test": "node test.js"
   }
 }
