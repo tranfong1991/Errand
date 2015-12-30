@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-	- "0.10"
-service:
-	- "mongodb"
+ - "0.10"
+services:
+ - mongodb
 env:
-	- NODE_ENV=travis
+ - NODE_ENV=travis
