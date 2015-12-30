@@ -9,5 +9,8 @@
     "express": "~4.13.3",
     "express-paginate": "^0.1.0",
     "mongoose": "~4.3.3"
+  },
+  "script": {
+    "test":"node server"
   }
 }
