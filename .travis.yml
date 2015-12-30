@@ -5,4 +5,4 @@ services:
  - mongodb
 env:
  - NODE_ENV=travis
-script: node server
+script: node webapp/server
