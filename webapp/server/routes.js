@@ -43,7 +43,7 @@ module.exports = function(app){
 	//return search page
 	app.get('/search', function(req, res){
 		res.render('pages/search', {
-
+			term:req.query.term
 		});
 	});
 }

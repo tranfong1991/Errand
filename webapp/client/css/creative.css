@@ -31,6 +31,10 @@ a {
     transition: all .35s;
 }
 
+.contact a{
+  color:white;
+}
+
 a:hover,
 a:focus {
     color: #eb3812;
