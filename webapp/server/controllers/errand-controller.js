@@ -65,7 +65,7 @@ module.exports = {
 
 	update : function(req, res){
 		//$set operator is used to modify some of the field values
-		Errand.update({id:req.params.id}, {$set:req.body}, function(err){
+		Errand.update({_id: req.params.id}, {$set: req.body}, function(err){
 			if(err)
 			utils.handleUpdateError(res);
 			else utils.handleSuccess(res);
@@ -74,11 +74,29 @@ module.exports = {
 
 	//called when a user takes an errand
 	take : function(req, res){
-
+		Errand.update({_id: req.params.id}, {
+			$set: {
+				is_taken: true,
+				runner: req.query.user	//no need to cast to ObjectId, it is automatically cast
+			}
+		}, function(err){
+			if(err)
+			utils.handleUpdateError(res);
+			else utils.handleSuccess(res);
+		});
 	},
 
 	//called when a user untake an errand
 	untake : function(req, res){
-
+		Errand.update({_id: req.params.id}, {
+			$set: {
+				is_taken: false,
+				runner: null
+			}
+		}, function(err){
+			if(err)
+			utils.handleRemoveError(res);
+			else utils.handleSuccess(res);
+		});
 	}
 }
