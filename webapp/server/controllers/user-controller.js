@@ -3,27 +3,27 @@ var utils = require('../utils.js');
 
 module.exports = {
 	create : function(req, res){
-	    var user = new User(req.body);
+		var user = new User(req.body);
 
-	    user.save(function(err){
+		user.save(function(err){
 			if(err)
-				utils.handleCreateError(res);
+			utils.handleCreateError(res);
 			else utils.handleSuccess(res);
-	    });
+		});
 	},
 
 	listAll : function(req, res){
-	    User.find({}, function(err, result){
-	    	if(result == null)
-	    		utils.handleNullResult(res);
+		User.find({}, function(err, result){
+			if(result == null)
+			utils.handleNullResult(res);
 			else res.json(result);
-	    });
+		});
 	},
 
 	listOne : function(req, res){
 		User.findById(req.params.id, function(err, result){
 			if(result == null)
-				utils.handleNullResult(res);
+			utils.handleNullResult(res);
 			else res.json(result);
 		});
 	},
@@ -31,7 +31,7 @@ module.exports = {
 	remove : function(req, res){
 		User.remove({id:req.params.id}, function(err){
 			if(err)
-				utils.handleRemoveError(res);
+			utils.handleRemoveError(res);
 			else utils.handleSuccess(res);
 		});
 	},
@@ -39,7 +39,7 @@ module.exports = {
 	update : function(req, res){
 		User.update({id:req.params.id}, {$set:req.body}, function(err){
 			if(err)
-				utils.handleUpdateError(res);
+			utils.handleUpdateError(res);
 			else utils.handleSuccess(res);
 		});
 	}

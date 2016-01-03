@@ -15,31 +15,29 @@ module.exports = {
 	},
 
 	listAll : function(req, res){
-		Errand.paginate({}, { page: (req.query.page ? req.query.page : 1), limit: LIMIT_PER_PAGE },
+		Errand.paginate({}, {
+			page: (req.query.page ? req.query.page : 1),
+			limit: LIMIT_PER_PAGE,
+			populate: {
+				path: 'customer runner',	//populate customer and runner fields. Separated by space
+				select: 'name profilePicUrl'	//only populate name and profilePicUrl of the above 2 fields. Also separated by space
+			}
+		},
 		function(err, result){
 			if(result == null)
 			utils.handleNullResult(res);
-			else {
-				Errand.populate(result, {path:'customer'}, function(err, result){
-					if(result == null)
-					utils.handleNullResult(res);
-					else res.json(result);
-				});
-			}
+			else res.json(result);
 		});
 	},
 
 	listOne : function(req, res){
-		Errand.findById(req.params.id, function(err, result){
+		Errand.findById(req.params.id).populate({
+			path: 'customer runner',
+			select: 'name profilePicUrl'
+		}).exec(function(err, result){
 			if(result == null)
 			utils.handleNullResult(res);
-			else {
-				Errand.populate(result, {path:'customer'}, function(err, result){
-					if(result == null)
-					utils.handleNullResult(res);
-					else res.json(result);
-				});
-			}
+			else res.json(result);
 		});
 	},
 

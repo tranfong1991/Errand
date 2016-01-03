@@ -8,7 +8,7 @@ var ErrandSchema = new Schema({
 	startTime: {type: Date, default: Date.now},
 	endTime: Date,
 	compensation: {type: Number, min: 0},
-	isTaken: Boolean,
+	isTaken: {type: Boolean, default: false},
 	location: String,
 	customer: {
 		type: Schema.Types.ObjectId,
@@ -36,7 +36,7 @@ ErrandSchema.pre('save', function(next){
 //add paginate plugin to errand schema
 ErrandSchema.plugin(mongoosePaginate);
 
-ErrandSchema.index({description: "text"});
+ErrandSchema.index({description: "text", location: "text"});
 
 var Errand = mongoose.model('Errand', ErrandSchema);
 
