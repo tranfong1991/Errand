@@ -18,8 +18,10 @@ router.get('/api/search', errandController.search);
 router.get('/api/errands', errandController.listAll);
 router.get('/api/errands/:id', errandController.listOne);
 router.post('/api/errands', errandController.create);
-router.delete('/api/errands/:id', errandController.remove)
 router.put('/api/errands/:id', errandController.update);
+router.delete('/api/errands/:id', errandController.remove);
+router.put('/api/errands/:id/take', errandController.take);
+router.delete('/api/errands/:id/take', errandController.untake);
 
 //================
 //===== User =====
@@ -28,8 +30,8 @@ router.put('/api/errands/:id', errandController.update);
 router.get('/api/users', userController.listAll);
 router.get('/api/users/:id', userController.listOne);
 router.post('/api/users', userController.create);
-router.delete('/api/users/:id', userController.remove);
 router.put('/api/users/:id', userController.update);
+router.delete('/api/users/:id', userController.remove);
 
 //============================
 //===== Main Application =====

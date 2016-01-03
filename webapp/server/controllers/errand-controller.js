@@ -10,7 +10,7 @@ module.exports = {
 		errand.save(function(err){
 			if(err)
 			utils.handleCreateError(res);
-			else utils.handleSuccess(res);
+			else utils.handleCreateSuccess(res);
 		});
 	},
 
@@ -18,9 +18,10 @@ module.exports = {
 		Errand.paginate({}, {
 			page: (req.query.page ? req.query.page : 1),
 			limit: LIMIT_PER_PAGE,
+			select: req.query.fields,
 			populate: {
 				path: 'customer runner',	//populate customer and runner fields. Separated by space
-				select: 'name profilePicUrl'	//only populate name and profilePicUrl of the above 2 fields. Also separated by space
+				select: 'name profile_pic_url'	//only populate name and profilePicUrl of the above 2 fields. Also separated by space
 			}
 		},
 		function(err, result){
@@ -31,9 +32,11 @@ module.exports = {
 	},
 
 	listOne : function(req, res){
-		Errand.findById(req.params.id).populate({
+		Errand.findById(req.params.id)
+		.select(req.query.fields)
+		.populate({
 			path: 'customer runner',
-			select: 'name profilePicUrl'
+			select: 'name profile_pic_url'
 		}).exec(function(err, result){
 			if(result == null)
 			utils.handleNullResult(res);
@@ -67,5 +70,15 @@ module.exports = {
 			utils.handleUpdateError(res);
 			else utils.handleSuccess(res);
 		});
+	},
+
+	//called when a user takes an errand
+	take : function(req, res){
+
+	},
+
+	//called when a user untake an errand
+	untake : function(req, res){
+
 	}
 }

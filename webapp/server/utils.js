@@ -1,25 +1,32 @@
-//===== HELPER FUNCTIONS =====
 const HTTP_OK = 200;
-const HTTP_NOT_FOUND = 400;
+const HTTP_CREATED = 201;
+const HTTP_NOT_FOUND = 404;
 
+//============================
+//===== HELPER FUNCTIONS =====
+//============================
 module.exports = {
 	handleNullResult : function(res){
-		res.json({status:HTTP_NOT_FOUND, msg:'Not found!'});
+		res.json({status: HTTP_NOT_FOUND, msg: 'Not found!'});
 	},
 
 	handleCreateError : function(res){
-		res.json({status:HTTP_NOT_FOUND, msg:'Cannot create!'});
+		res.json({status: HTTP_NOT_FOUND, msg: 'Cannot create!'});
 	},
 
 	handleRemoveError : function(res){
-		res.json({status:HTTP_NOT_FOUND, msg:'Cannot remove!'});
+		res.json({status: HTTP_NOT_FOUND, msg: 'Cannot remove!'});
 	},
 
 	handleUpdateError :function(res){
-		res.json({status:HTTP_NOT_FOUND, msg:'Cannot update!'});
+		res.json({status: HTTP_NOT_FOUND, msg: 'Cannot update!'});
 	},
 
 	handleSuccess : function(res){
-		res.json({status:HTTP_OK});
+		res.json({status: HTTP_OK});
+	},
+
+	handleCreateSuccess : function(res){
+		res.json({status: HTTP_CREATED});
 	}
 }

@@ -2,18 +2,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-	id: {
+	"id": {
 		type: String,
 		required: true
 	},
-	name: String,
-	profilePicUrl: String,
-	paymentAccount: String,
-	listedErrands: [{
+	"name": String,
+	"profile_pic_url": String,
+	"payment_account": String,
+	"listed_errands": [{
 		type: Schema.Types.ObjectId,
 		ref: 'Errand'
 	}],
-	takenErrands: [{
+	"taken_errands": [{
 		type: Schema.Types.ObjectId,
 		ref: 'Errand'
 	}]
