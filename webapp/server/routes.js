@@ -1,4 +1,3 @@
-var path = require('path');
 var errandController = require('./controllers/errand-controller');
 var userController = require('./controllers/user-controller');
 var router = require('express').Router();

@@ -4,13 +4,14 @@ var Schema = mongoose.Schema;
 
 //when using Date, need to call markModified() before save. Otherwise, mongoose is unaware of the change
 var ErrandSchema = new Schema({
-	"description": String,
-	"start_time": {type: Date, default: Date.now},
-	"end_time": Date,
+	"description": {type: String, required: true},
+	"start_time": {type: Date},
+	"end_time": {type: Date, required: true},
 	"compensation": {type: Number, min: 0},
 	"is_taken": {type: Boolean, default: false},
 	"location": String,
 	"customer": {
+		required: true,
 		type: Schema.Types.ObjectId,
 		ref: 'User'	//refer to actual User object
 	},
@@ -18,16 +19,20 @@ var ErrandSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	"created_at": {type: Date, default: Date.now},
-	"modified_at": {type: Date, default: Date.now}
+	"created_at": {type: Date},
+	"modified_at": {type: Date}
 });
 
-//before saving, populate createdAt and modifiedAt fields
+//before saving, populate created_at, start_time, and modified_at fields
 ErrandSchema.pre('save', function(next){
 	var now = new Date();
 
 	if(!this.created_at)
 		this.created_at = now;
+
+	if(!this.start_time)
+		this.start_time = now;
+
 	this.modified_at = now;
 
 	next();

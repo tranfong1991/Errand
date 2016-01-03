@@ -18,7 +18,8 @@ app.use(bodyParser.urlencoded({extended: true}));	//parse application/x-www-form
 app.use(bodyParser.json());	//parse application/json
 app.use(express.static(__dirname + '/client')); //set static files location to /client. For example, /js will be /client/js
 
-//direct traffic to routes.js. Has to be after bodyParser, or it won't parse json. Duh!!!
+//direct traffic to routes.js.
+//Has to be after bodyParser or it won't parse json. Duh!!!
 app.use('/', routes);
 
 app.listen(3000, function(){

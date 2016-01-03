@@ -1,5 +1,3 @@
-const LIMIT_PER_PAGE = 8;
-
 var Errand = require('../models/errand');
 var utils = require('../utils');
 
@@ -17,7 +15,7 @@ module.exports = {
 	listAll : function(req, res){
 		Errand.paginate({}, {
 			page: (req.query.page ? req.query.page : 1),
-			limit: LIMIT_PER_PAGE,
+			limit: (req.query.limit ? req.query.limit : 10),
 			select: req.query.fields,
 			populate: {
 				path: 'customer runner',	//populate customer and runner fields. Separated by space

@@ -6,7 +6,10 @@ var UserSchema = new Schema({
 		type: String,
 		required: true
 	},
-	"name": String,
+	"name": {
+		type: String,
+		required: true
+	},
 	"profile_pic_url": String,
 	"payment_account": String,
 	"listed_errands": [{
