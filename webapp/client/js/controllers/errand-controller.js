@@ -17,4 +17,22 @@ app.controller('errandController', ['$scope', '$http', 'Errand', 'Search',
 
 	//call when the first time the page load to retrieve errands from server
 	$scope.pageChanged();
+
+	$scope.login = function(){
+		$('#login').css('display', 'none');
+		$('#user').css('display', 'block');
+		FB.login(function(response){
+			if(response.status === "connected"){
+				console.log("logged in");
+			}
+		});
+	};
+
+	$scope.logout = function(){
+		$('#login').css('display', 'block');
+		$('#user').css('display', 'none');
+		FB.logout(function(response){
+			console.log("logged out")
+		});
+	};
 }]);
