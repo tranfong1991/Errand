@@ -21,13 +21,15 @@
           </div>
 
           <!-- Populate multiple errand template by using ng-repeat -->
-          <div ng-repeat="errand in errands">
-            <!-- Custom errand template using custom angular directive -->
-            <errand info="errand"></errand>
-          </div>
+	  <div class="row">
+            <div ng-repeat="errand in errands">
+              <!-- Custom errand template using custom angular directive -->
+              <errand info="errand"></errand>
+            </div>
+	  </div>
 
           <!-- Pagination -->
-          <div class="row text-center">
+         <div class="row text-center">
             <div class="col-lg-12">
               <pagination
                  total-items="totalItems"
