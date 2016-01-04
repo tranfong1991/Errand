@@ -10,11 +10,13 @@
     <!-- header -->
     <% include ../partials/header %>
 
+    <script>ip = "<%= ip %>"</script>
+    
     <section id="trending">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 text-center">
-            <h2 class="section-heading">Errands near College Station</h2>
+            <h2 class="section-heading">Errands near {{ location.city + ', ' + location.region + ', ' + location.countryCode }}</h2>
             <hr class="primary">
           </div>
 
@@ -28,12 +30,13 @@
           <div class="row text-center">
             <div class="col-lg-12">
               <pagination
-                total-items="totalItems"
-                ng-model="currentPage"
-                ng-change="pageChanged()"
-                max-size="maxSize"
-                items-per-page="itemsPerPage"
-                boundary-links="true">
+                 total-items="totalItems"
+                 ng-model="currentPage"
+                 ng-change="pageChanged()"
+                 max-size="maxSize"
+                 items-per-page="itemsPerPage"
+                 boundary-links="true"
+		 previous-text="Prev">
               </pagination>
             </div>
           </div>
@@ -75,7 +78,7 @@
 
     <!-- Directives -->
     <script type="text/javascript" src="js/directives/errand-directive.js"></script>
-   
+    
     <!-- Services -->
     <script type="text/javascript" src="js/services/errand-service.js"></script>
     <script type="text/javascript" src="js/services/auth-service.js"></script>

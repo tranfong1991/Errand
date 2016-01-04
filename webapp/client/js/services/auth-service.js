@@ -21,7 +21,6 @@ app.factory('Authentication',['$rootScope', function($rootScope){
 		//if $apply isn't called, view will not be dynamically updated. In this case, user.name will not show
 		$rootScope.$apply(function(){
 		    $rootScope.user = res;
-		    console.log(res);
 		});
 	    });
 	}

@@ -38,7 +38,12 @@ router.delete('/api/users/:id', userController.remove);
 
 //return homepage
 router.get('/', function(req, res){
-	res.render('pages/index');
+    //get client ip for location lookup
+    var ip = req.headers['x-forwarded-for']||req.connection.remoteAddress;
+
+    res.render('pages/index', {
+	ip: ip
+    });
 });
 
 //return search page
