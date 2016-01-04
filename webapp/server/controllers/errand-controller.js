@@ -49,7 +49,9 @@ module.exports = {
 			}
 		})
 		.exec(function(err, result){
-			res.json(result);
+		    if(err)
+			utils.handleNullResult(res);
+		    res.json(result);
 		});
 	},
 
