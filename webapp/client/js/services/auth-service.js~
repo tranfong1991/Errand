@@ -1,7 +1,0 @@
-app.factory('Authentication', function(){
-    var info = {
-	isLoggedIn: false,
-	username: ''
-    };
-    return info;
-});
