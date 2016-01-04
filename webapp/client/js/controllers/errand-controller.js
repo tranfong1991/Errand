@@ -1,4 +1,4 @@
-app.controller('errandController', ['$scope', 'Errand', 'Authentication', function($scope, Errand, Auth){
+app.controller('errandController', ['$scope', 'Errand', function($scope, Errand){
     $scope.errands = [];
 
     $scope.pageChanged = function(){
