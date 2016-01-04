@@ -23,7 +23,7 @@ module.exports = {
 	},
 
 	listOne : function(req, res){
-		User.findById(req.params.id)
+		User.find({id: req.params.id})
 		.select(req.query.fields)
 		.exec(function(err, result){
 			if(result == null)
