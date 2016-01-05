@@ -12,11 +12,11 @@ var UserSchema = new Schema({
 	},
 	"profile_pic_url": String,
 	"payment_account": String,
-	"listed_errands": [{
+	"errands_listed": [{
 		type: Schema.Types.ObjectId,
 		ref: 'Errand'
 	}],
-	"taken_errands": [{
+	"errands_taken": [{
 		type: Schema.Types.ObjectId,
 		ref: 'Errand'
 	}]

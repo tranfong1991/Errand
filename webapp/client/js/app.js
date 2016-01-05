@@ -24,7 +24,8 @@ app.run(['$rootScope', '$window', 'Authentication', function($rootScope, $window
             appId      : '431794573679228',
             cookie     : true,  // enable cookies to allow the server to access the session
             xfbml      : true,  // parse social plugins on this page
-            version    : 'v2.2' // use version 2.2
+	    status     : true,
+            version   : 'v2.2' // use version 2.2
 	});
 	auth.watchAuthStatusChange();
     };

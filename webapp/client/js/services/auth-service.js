@@ -3,7 +3,7 @@ app.factory('Authentication',['$rootScope', function($rootScope){
 	watchAuthStatusChange: function(){
 	    //this is only called when user is logged in. Thus, if this isn't called, we know user is not logged in
 	    FB.Event.subscribe('auth.authResponseChange', function(res){
-	       if(res.status === 'connected'){
+		if(res.status === 'connected'){
 		   $('#login').css('display', 'none');
 		   $('#user').css('display', 'block');
 		   info.getUserInfo();

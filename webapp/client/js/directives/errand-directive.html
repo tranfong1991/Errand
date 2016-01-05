@@ -1,12 +1,13 @@
 <!-- This automatically goes to new line when there are more than 4 in a row -->
-<div class="col-md-3 col-xs-12 col-sm-6 portfolio-item">
+<div class="col-md-3 col-xs-12 col-sm-6 errand-div">
   <div style="float:left;" class="text-center">
     <img class="img-responsive img-circle" style="height:80px; width:80px;"
       ng-src="{{info.customer.profile_pic_url}}" alt="">
     <h4>{{info.customer.name}}</h4>
   </div>
-  <div style="float:right; width:150px;">
+  <div style="float:right; ">
     <h3>${{info.compensation}}</h3>
     <h4 style="word-wrap:break-word;">{{info.description | fit}}</h4>
   </div>
 </div>
+

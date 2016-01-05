@@ -13,7 +13,12 @@ module.exports = {
     },
 
     listAll : function(req, res){
-	Errand.paginate({}, {
+	//if location is not empty, only return errand of that location. Otherwise, return all
+	Errand.paginate(req.query.location ? {
+	    $text:{ 
+		$search: req.query.location 
+	    }
+	} : {}, {
 	    page: (req.query.page ? req.query.page : 1),
 	    limit: (req.query.limit ? req.query.limit : 10),
 	    select: req.query.fields,
