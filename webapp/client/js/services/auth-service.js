@@ -18,10 +18,11 @@ app.factory('Authentication',['$rootScope', function($rootScope){
 	    });
 	},
 	getUserInfo: function(){
-	    FB.api('/me', {fields: 'id, name, picture.height(80)'}, function(res){
+	    FB.api('/me', {fields: 'id, name, picture.height(80), email'}, function(res){
 		//call $apply because the answer from FB is asynchronous and from outside the framework world.
 		//if $apply isn't called, view will not be dynamically updated. In this case, user.name will not show
 		$rootScope.$apply(function(){
+		    console.log(res);
 		    $rootScope.user = res;
 		});
 	    });

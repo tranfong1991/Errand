@@ -24,7 +24,7 @@ module.exports = {
 	    select: req.query.fields,
 	    populate: {
 		path: 'customer runner',	//populate customer and runner fields. Separated by space
-		select: 'name profile_pic_url'	//only populate name and profilePicUrl of the above 2 fields. Also separated by space
+		select: 'name profile_pic_url contact_info'	//only populate name, profile_pic_url, and contact_info of the above 2 fields. Also separated by space
 	    }
 	},
 			function(err, result){

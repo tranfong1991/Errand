@@ -44,14 +44,15 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 			User.save({
 			    id: $rootScope.user.id,
 			    name: $rootScope.user.name,
-			    profile_pic_url: $rootScope.user.picture.data.url
+			    profile_pic_url: $rootScope.user.picture.data.url,
+			    contact_info: [$rootScope.user.email]
 			});
 			clearInterval(intervalId);
 		    }
 		}, 500);
 		console.log("Logged in");
 	    }
-	});
+	}, {scope: 'email'});
     };
 
     $scope.logout = function(){
