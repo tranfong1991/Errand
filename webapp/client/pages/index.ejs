@@ -22,10 +22,8 @@
 
           <!-- Populate multiple errand template by using ng-repeat -->
 	  <div class="row">
-            <div ng-repeat="errand in errands">
               <!-- Custom errand template using custom angular directive -->
-              <errand info="errand"></errand>
-            </div>
+              <errand info="errand" ng-repeat="errand in errands"></errand>
 	  </div>
 
           <!-- Pagination -->
@@ -83,6 +81,7 @@
     
     <!-- Services -->
     <script type="text/javascript" src="js/services/errand-service.js"></script>
+    <script type="text/javascript" src="js/services/user-service.js"></script>
     <script type="text/javascript" src="js/services/auth-service.js"></script>
 
     <!-- Filters -->

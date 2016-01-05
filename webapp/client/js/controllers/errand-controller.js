@@ -1,4 +1,4 @@
-app.controller('errandController', ['$scope', 'Errand', '$http', function($scope, Errand, $http){
+app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$http', function($scope, $rootScope, Errand, User, $http){
     $scope.errands = [];
     $scope.location = {};
 
@@ -38,6 +38,17 @@ app.controller('errandController', ['$scope', 'Errand', '$http', function($scope
     $scope.login = function(){
 	FB.login(function(response){
 	    if(response.status === "connected"){
+		//check $rootScope.user every 500ms to see if it's populated before posting it to the server
+		var intervalId = setInterval(function(){
+		    if(!jQuery.isEmptyObject($rootScope.user)){
+			User.save({
+			    id: $rootScope.user.id,
+			    name: $rootScope.user.name,
+			    profile_pic_url: $rootScope.user.picture.data.url
+			});
+			clearInterval(intervalId);
+		    }
+		}, 500);
 		console.log("Logged in");
 	    }
 	});

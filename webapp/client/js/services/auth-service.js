@@ -11,6 +11,8 @@ app.factory('Authentication',['$rootScope', function($rootScope){
 	       else{
 		   $('#login').css('display', 'block');
 		   $('#user').css('display', 'none');
+
+		   //doesn't need to be in $apply() because this is called first
 		   $rootScope.user = {};
 	       }
 	    });
