@@ -5,8 +5,8 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
     $scope.pageChanged = function(){
 	//use get() instead of query() because query() expects an array, but result is an object
 	Errand.get({
-	    page: $scope.currentPage,
-	    location: $scope.location.city
+	    page: $scope.currentPage
+	    //location: $scope.location.city
 	}, function(result){
 	    $scope.errands = result.docs;
 

@@ -5,11 +5,10 @@ var Schema = mongoose.Schema;
 //when using Date, need to call markModified() before save. Otherwise, mongoose is unaware of the change
 var ErrandSchema = new Schema({
     "description": {type: String, required: true},
-    "start_time": {type: Date}, //might not necessary
-    "end_time": {type: Date, required: true},
+    "finish_by": {type: Date, required: true},
     "compensation": {type: Number, min: 0},
     "is_taken": {type: Boolean, default: false},
-    "destination": String,
+    "location": String, //where the errand is done
     "customer": {
 	required: true,
 	type: Schema.Types.ObjectId,
@@ -29,9 +28,6 @@ ErrandSchema.pre('save', function(next){
 
     if(!this.created_at)
 	this.created_at = now;
-
-    if(!this.start_time)
-	this.start_time = now;
 
     this.modified_at = now;
 

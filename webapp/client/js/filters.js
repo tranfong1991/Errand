@@ -1,8 +1,16 @@
 //fit string in a limited space by only display 10 characters
-app.filter('fit', function(){
+app.filter('descFit', function(){
 	return function(input){
-		if(input.length > 15)
-			input = input.substring(0, 15) + "...";
+		if(input.length > 30)
+			input = input.substring(0, 30) + "...";
+		return input;
+	}
+});
+
+app.filter('nameFit', function(){
+	return function(input){
+		if(input.length > 20)
+			input = input.substring(0, 20) + "...";
 		return input;
 	}
 });
