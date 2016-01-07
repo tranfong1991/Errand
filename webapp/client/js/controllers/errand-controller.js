@@ -60,4 +60,10 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 	    console.log("Logged out")
 	});
     };
+
+    $scope.submit = function(){
+	//put customerId in errand json in order for the server to find its _id
+	$scope.errand.customerId = $rootScope.user.id;
+	Errand.save($scope.errand);
+    }
 }]);

@@ -1,15 +1,31 @@
 var Errand = require('../models/errand');
+var User = require('../models/user');
 var utils = require('../utils');
 
 module.exports = {
     create : function(req, res){
-	var errand = new Errand(req.body);
+	//find the customer's _id based on their Facebook Id, then do the saving
+	User.find({id: req.body.customerId})
+	    .select('_id')
+	    .exec(function(err, result){
+		if(err)
+		    utils.handleNullResult(res);
+		else{
+		    var errand = new Errand({
+			description: req.body.description,
+			compensation: req.body.compensation,
+			finish_by: req.body.finish_by,
+			location: req.body.location,
+			customer: result[0]._id
+		    });
 
-	errand.save(function(err){
-	    if(err)
-		utils.handleCreateError(res);
-	    else utils.handleCreateSuccess(res);
-	});
+		    errand.save(function(err){
+			if(err)
+			    utils.handleCreateError(res);
+			else utils.handleCreateSuccess(res);
+		    }); 
+		}
+	    });
     },
 
     listAll : function(req, res){
@@ -24,7 +40,7 @@ module.exports = {
 	    select: req.query.fields,
 	    populate: {
 		path: 'customer runner',	//populate customer and runner fields. Separated by space
-		select: 'name profile_pic_url contact_info'	//only populate name, profile_pic_url, and contact_info of the above 2 fields. Also separated by space
+		select: '-_id name profile_pic_url contact_info'	//only populate name, profile_pic_url, and contact_info of the above 2 fields. Also separated by space
 	    }
 	},
 			function(err, result){
@@ -39,7 +55,7 @@ module.exports = {
 	    .select(req.query.fields)
 	    .populate({
 		path: 'customer runner',
-		select: 'name profile_pic_url'
+		select: '-_id name profile_pic_url'
 	    }).exec(function(err, result){
 		if(result == null)
 		    utils.handleNullResult(res);

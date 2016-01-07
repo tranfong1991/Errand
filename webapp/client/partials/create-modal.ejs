@@ -1,0 +1,42 @@
+<div class="errand-modal modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Create Errand</h2>
+                            <hr>
+			    <form novalidate class="form-horizontal" role="form">
+			    	<div class="form-group">
+				     <label class="control-label" for="description">Description</label>
+				     <input class="form-control" ng-model="errand.description" type="text" id="description" placeholder="e.g. Buy a Big Mac">
+			    	</div>
+				<div class="form-group">
+				     <label class="control-label" for="compensation">Compensation</label>
+				     <input class="form-control" ng-model="errand.compensation" type="number" id="compensation" placeholder="e.g. 10.00">
+				</div>
+				<div class="form-group">
+				     <label class="control-label" for="finish-by">Finish by</label>
+				     <input class="form-control" ng-model="errand.finish_by" type="datetime-local" id="finish-by" placeholder="e.g. Jan 10, 2016 3:00pm">
+				</div>
+				<div class="form-group">
+				     <label class="control-label" for="location">Location</label>
+				     <input class="form-control" ng-model="errand.location" type="text" id="Location" placeholder="e.g. College Station, TX">
+				</div>
+				<div class="form-group">
+				     <button ng-click="submit()" class="btn btn-primary" data-dismiss="modal">Submit</button>
+				     <button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
+			    	</div>
+			    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

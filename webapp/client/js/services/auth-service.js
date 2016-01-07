@@ -22,7 +22,6 @@ app.factory('Authentication',['$rootScope', function($rootScope){
 		//call $apply because the answer from FB is asynchronous and from outside the framework world.
 		//if $apply isn't called, view will not be dynamically updated. In this case, user.name will not show
 		$rootScope.$apply(function(){
-		    console.log(res);
 		    $rootScope.user = res;
 		});
 	    });
