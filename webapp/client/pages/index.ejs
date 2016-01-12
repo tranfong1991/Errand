@@ -16,7 +16,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 text-center">
-            <h2 class="section-heading">Errands near {{ location.city + ', ' + location.region + ', ' + location.countryCode }}</h2>
+            <h2 class="section-heading">Errands near {{ currentLocation.city + ', ' + currentLocation.region + ', ' + currentLocation.countryCode }}</h2>
             <hr class="primary">
           </div>
 
@@ -64,6 +64,9 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/shared/creative.js"></script>
 
+    <!-- Google Places API  -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2hdyDaASuFFv-wQUhnDZIA9TPK6UIiaM&libraries=places"></script>
+
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js"></script>
@@ -78,6 +81,7 @@
 
     <!-- Directives -->
     <script type="text/javascript" src="js/directives/errand-directive.js"></script>
+    <script type="text/javascript" src="js/directives/google-places-directive.js"></script>  
     
     <!-- Services -->
     <script type="text/javascript" src="js/services/errand-service.js"></script>
