@@ -1,12 +1,12 @@
 app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$http', function($scope, $rootScope, Errand, User, $http){
     $scope.errands = [];
-    $scope.location = {};
+    $scope.currentLocation = {};
 
     $scope.pageChanged = function(){
 	//use get() instead of query() because query() expects an array, but result is an object
 	Errand.get({
 	    page: $scope.currentPage
-	    //location: $scope.location.city
+	    //location: $scope.currentLocation.city
 	}, function(result){
 	    $scope.errands = result.docs;
 
@@ -18,22 +18,22 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 	});
     };
 
-    $scope.getLocation = function(){
+    $scope.getCurrentLocation = function(){
 	//ip-api is used to get location given an IP address
 	$http.get('http://ip-api.com/json/' + ip)
 	.then(function(res){
 	    if(res.data.status === 'success'){
-		$scope.location = res.data;
+		$scope.currentLocation = res.data;
 
 		//only called when location is known
 		$scope.pageChanged();
 	    }
-	    else $scope.location = "unknown";
+	    else $scope.currentLocation = "unknown";
 	});
     }
     
     //called when the page finished loading to retrieve location based on client IP.
-    $scope.getLocation();
+    $scope.getCurrentLocation();
 
     $scope.login = function(){
 	FB.login(function(response){
@@ -65,5 +65,13 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 	//put customerId in errand json in order for the server to find its _id
 	$scope.errand.customerId = $rootScope.user.id;
 	Errand.save($scope.errand);
+    }
+
+    $scope.cancel = function(){
+	$scope.errand = {};  //if $scope.errand is not made empty, even the fields are empty, it still keeps its previous values	
+	$('#description').val("");
+	$('#location').val("");
+	$('#compensation').val("");
+	$('#finish-by').val("");
     }
 }]);
