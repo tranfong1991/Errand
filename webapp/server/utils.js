@@ -26,7 +26,10 @@ module.exports = {
 		res.json({status: HTTP_OK});
 	},
 
-	handleCreateSuccess : function(res){
-		res.json({status: HTTP_CREATED});
+	handleCreateSuccess : function(res, object){
+		res.json({
+		    status: HTTP_CREATED,
+		    object_id: object._id
+		});
 	}
 }

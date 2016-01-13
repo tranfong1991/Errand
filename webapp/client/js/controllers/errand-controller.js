@@ -1,12 +1,16 @@
 app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$http', function($scope, $rootScope, Errand, User, $http){
+    const HTTP_OK = 200;
+    const HTTP_CREATED = 201;
+    const HTTP_NOT_FOUND = 404;
+
     $scope.errands = [];
     $scope.currentLocation = {};
 
     $scope.pageChanged = function(){
 	//use get() instead of query() because query() expects an array, but result is an object
 	Errand.get({
-	    page: $scope.currentPage
-	    //location: $scope.currentLocation.city
+	    page: $scope.currentPage,
+	    location: $scope.currentLocation.city
 	}, function(result){
 	    $scope.errands = result.docs;
 
@@ -64,7 +68,18 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
     $scope.submit = function(){
 	//put customerId in errand json in order for the server to find its _id
 	$scope.errand.customerId = $rootScope.user.id;
-	Errand.save($scope.errand);
+	Errand.save($scope.errand, function(res){
+	    //if a new errand is created, add its _id to the current user's errands_listed array
+	    if(res.status === HTTP_CREATED)
+		User.modifyErrandsList({id: $rootScope.user.id}, {
+		    method:'add',
+		    
+		    //use 'data' field so that in the server side code, it can get what is inside it entirely instead of eliminate 'method' field
+		    data:{
+			errands_listed: res.object_id
+		    }
+		});
+	});
     }
 
     $scope.cancel = function(){

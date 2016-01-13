@@ -1,3 +1,3 @@
 app.factory('Errand', function($resource){
-	return $resource('/api/errands');
+	return $resource('/api/errands/:id');
 });

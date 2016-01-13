@@ -22,7 +22,7 @@ module.exports = {
 		    errand.save(function(err){
 			if(err)
 			    utils.handleCreateError(res);
-			else utils.handleCreateSuccess(res);
+			else utils.handleCreateSuccess(res, errand);
 		    }); 
 		}
 	    });

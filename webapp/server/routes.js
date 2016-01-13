@@ -28,6 +28,8 @@ router.delete('/api/errands/:id/take', errandController.untake);
 
 router.get('/api/users', userController.listAll);
 router.get('/api/users/:id', userController.listOne);
+router.get('/api/users/:id/errands', userController.listErrands);
+router.put('/api/users/:id/errands', userController.modifyErrandsList); 
 router.post('/api/users', userController.create);
 router.put('/api/users/:id', userController.update);
 router.delete('/api/users/:id', userController.remove);
