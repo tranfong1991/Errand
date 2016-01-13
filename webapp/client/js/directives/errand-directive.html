@@ -1,18 +1,20 @@
-<!-- This automatically goes to new line when there are more than 4 in a row -->
-<div class="col-md-3 col-xs-12 col-sm-6">
-  <div class="errand">
-    <div class="text-center customer">
-      <img class="img-responsive img-circle profile-pic" ng-src="{{info.customer.profile_pic_url}}" alt="">
-      <h5 style="word-wrap:break-word;">{{info.customer.name | nameFit}}</h5>
-    </div>
-    <div>
-      <div>
-	<h4 style="word-wrap:break-word;">{{info.description | descFit}}</h4>
+<!-- Make entire div clickable -->
+<a href="#" data-toggle="modal" data-target="#errand-modal">
+  <!-- This automatically goes to new line when row is full -->
+  <div class="col-md-3 col-xs-12 col-sm-6">
+    <div class="errand">
+      <div class="text-center customer">
+	<img class="img-responsive img-circle profile-pic" ng-src="{{info.customer.profile_pic_url}}" alt="">
+	<h5 style="word-wrap:break-word;">{{info.customer.name | nameFit}}</h5>
       </div>
-      <div class="take-errand">
-	<button class="btn btn-primary">Do it for ${{info.compensation}}</button>
+      <div>
+	<div>
+	  <h4 style="word-wrap:break-word;">{{info.description | descFit}}</h4>
+	</div>
+	<div class="take-errand">
+	  <button class="btn btn-primary">Do it for ${{info.compensation}}</button>
+	</div>
       </div>
     </div>
   </div>
-</div>
-
+</a>
