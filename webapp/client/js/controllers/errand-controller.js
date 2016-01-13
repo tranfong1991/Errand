@@ -72,7 +72,7 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 	    //if a new errand is created, add its _id to the current user's errands_listed array
 	    if(res.status === HTTP_CREATED)
 		User.modifyErrandsList({id: $rootScope.user.id}, {
-		    method:'add',
+		    method: 'add',
 		    
 		    //use 'data' field so that in the server side code, it can get what is inside it entirely instead of eliminate 'method' field
 		    data:{
