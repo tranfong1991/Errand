@@ -93,7 +93,15 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 
     $scope.getErrandInfo = function(id){
 	Errand.get({id: id}, function(result){
-	    $scope.testing_info = result.description;
+	    $scope.errand = result;
 	});
     }
+
+    $scope.takeErrand = function(id){
+	Errand.take({id: id},{runnerId: $rootScope.user.id}, function(response){
+	    if(response.status === HTTP_OK){
+		console.log('successfully taken');
+	    }
+	});
+    }    
 }]);
