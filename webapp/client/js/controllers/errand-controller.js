@@ -93,15 +93,39 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 
     $scope.getErrandInfo = function(id){
 	Errand.get({id: id}, function(result){
-	    $scope.errand = result;
+	    $scope.selectedErrand = result;
+	    if(result.is_taken)
+		$scope.buttonText = 'Untake Errand';
+	    else $scope.buttonText = 'Take Errand'
 	});
     }
 
-    $scope.takeErrand = function(id){
-	Errand.take({id: id},{runnerId: $rootScope.user.id}, function(response){
-	    if(response.status === HTTP_OK){
-		console.log('successfully taken');
-	    }
-	});
-    }    
+    $scope.errandAction = function(){
+	var errandId = $scope.selectedErrand._id;
+
+	if(! $scope.selectedErrand.is_taken){
+	    Errand.take({id: errandId},{runnerId: $rootScope.user.id}, function(response){
+		//if errand is successfully taken, add errand id to runner's errands_taken list
+		if(response.status === HTTP_OK){
+		    User.modifyErrandsList({id: $rootScope.user.id}, {
+			method: 'add',
+			data:{
+			    errands_taken: errandId
+			}
+		    });
+		}
+	    });
+	} else {
+	    Errand.untake({id: errandId}, null, function(response){
+		if(response.status === HTTP_OK){
+		    User.modifyErrandsList({id: $rootScope.user.id}, {
+			method: 'remove',
+			data:{
+			    errands_taken: errandId
+			}
+		    });
+		}
+	    });
+	}
+    }
 }]);

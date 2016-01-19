@@ -9,14 +9,16 @@
                <div class="row">
                	    <div class="col-lg-8 col-lg-offset-2">
                     	 <div class="modal-body">
-			      <img class="img-circle profile-pic-big" ng-src="{{errand.customer.profile_pic_url}}">
+			      <img class="img-circle profile-pic-big" ng-src="{{selectedErrand.customer.profile_pic_url}}">
 			      <h3>Description</h3>
-			      <p>{{errand.description}}</p>
+			      <p>{{selectedErrand.description}}</p>
 			      <h3>Location</h3>
-			      <p>{{errand.location}}</p>
+			      <p>{{selectedErrand.location}}</p>
+			      <h3>Compensation</h3>
+			      <p>${{selectedErrand.compensation}}</p>
 			      <h3>Finish By</h3>
-			      <p>{{errand.finish_by | toDate}}</p>
-			      <button data-dismiss="modal" ng-click="takeErrand(errand._id)" class="btn btn-primary">Do it for ${{errand.compensation}}</button>
+			      <p>{{selectedErrand.finish_by | toDate}}</p>
+			      <button data-dismiss="modal" ng-click="errandAction()" class="btn btn-primary">{{buttonText}}</button>
 			 </div>
                     </div>
                </div>
