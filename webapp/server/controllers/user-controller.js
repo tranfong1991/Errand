@@ -57,9 +57,9 @@ module.exports = {
     listErrands: function(req, res){
 	var category;
 
-	if(req.query.category === 'listed'){
+	if(req.query.category === 'listed')
 	    category = 'errands_listed';
-	} else category = 'errands_taken';
+	else category = 'errands_taken';
 	
 	User.find({id: req.params.id})
 	    .select(category)

@@ -5,10 +5,10 @@ var utils = require('../utils');
 module.exports = {
     create : function(req, res){
 	//find the customer's _id based on their Facebook Id, then do the saving
-	User.find({id: req.body.customerId})
+	User.findOne({id: req.body.customerId})
 	    .select('_id')
 	    .exec(function(err, result){
-		if(err)
+		if(err || result == null)
 		    utils.handleNullResult(res);
 		else{
 		    var errand = new Errand({
@@ -16,7 +16,7 @@ module.exports = {
 			compensation: req.body.compensation,
 			finish_by: req.body.finish_by,
 			location: req.body.location,
-			customer: result[0]._id
+			customer: result._id
 		    });
 
 		    errand.save(function(err){
@@ -44,7 +44,7 @@ module.exports = {
 	    }
 	},
 			function(err, result){
-			    if(result == null)
+			    if(err || result == null)
 				utils.handleNullResult(res);
 			    else res.json(result);
 			});
@@ -57,7 +57,7 @@ module.exports = {
 		path: 'customer runner',
 		select: '-_id name profile_pic_url'
 	    }).exec(function(err, result){
-		if(result == null)
+		if(err || result == null)
 		    utils.handleNullResult(res);
 		else res.json(result);
 	    });
@@ -69,7 +69,7 @@ module.exports = {
 		$search: req.query.term
 	    }
 	}).exec(function(err, result){
-	    if(err)
+	    if(err || result == null)
 		utils.handleNullResult(res);
 	    res.json(result);
 	});
@@ -94,16 +94,24 @@ module.exports = {
 
     //called when a user takes an errand
     take : function(req, res){
-	Errand.update({_id: req.params.id}, {
-	    $set: {
-		is_taken: true,
-		runner: req.query.user	//no need to cast to ObjectId, it is automatically cast
-	    }
-	}, function(err){
-	    if(err)
-		utils.handleUpdateError(res);
-	    else utils.handleSuccess(res);
-	});
+	User.findOne({id: req.body.runnerId})
+	    .select("_id")
+	    .exec(function(err, result){
+		if(err || result == null)
+		    utils.handleNullResult(res);
+		else{
+		    Errand.update({_id: req.params.id}, {
+		    	$set: {
+		    	    is_taken: true,
+		    	    runner: result._id	//no need to cast to ObjectId, it is automatically cast
+		    	}
+		    }, function(err){
+		    	if(err)
+		    	    utils.handleUpdateError(res);
+		    	else utils.handleSuccess(res);
+		    });
+		}
+	    });
     },
 
     //called when a user untake an errand

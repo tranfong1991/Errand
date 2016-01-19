@@ -1,0 +1,27 @@
+<div class="errand-modal modal fade" id="errand-modal" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-content">
+     	  <div class="close-modal" ng-click="cancel()" data-dismiss="modal">
+               <div class="lr">
+               	    <div class="rl"></div>
+               </div>
+          </div>
+          <div class="container">
+               <div class="row">
+               	    <div class="col-lg-8 col-lg-offset-2">
+                    	 <div class="modal-body">
+			      <img class="img-circle profile-pic-big" ng-src="{{selectedErrand.customer.profile_pic_url}}">
+			      <h3>Description</h3>
+			      <p>{{selectedErrand.description}}</p>
+			      <h3>Location</h3>
+			      <p>{{selectedErrand.location}}</p>
+			      <h3>Compensation</h3>
+			      <p>${{selectedErrand.compensation}}</p>
+			      <h3>Finish By</h3>
+			      <p>{{selectedErrand.finish_by | toDate}}</p>
+			      <button data-dismiss="modal" ng-click="errandAction()" class="btn btn-primary">{{buttonText}}</button>
+			 </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
