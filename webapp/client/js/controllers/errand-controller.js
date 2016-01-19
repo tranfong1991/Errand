@@ -10,7 +10,8 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 	//use get() instead of query() because query() expects an array, but result is an object
 	Errand.get({
 	    page: $scope.currentPage,
-	    location: $scope.currentLocation.city
+	    location: $scope.currentLocation.city,
+	    fields: 'customer description compensation'
 	}, function(result){
 	    $scope.errands = result.docs;
 
@@ -88,5 +89,43 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 	$('#location').val("");
 	$('#compensation').val("");
 	$('#finish-by').val("");
+    }
+
+    $scope.getErrandInfo = function(id){
+	Errand.get({id: id}, function(result){
+	    $scope.selectedErrand = result;
+	    if(result.is_taken)
+		$scope.buttonText = 'Untake Errand';
+	    else $scope.buttonText = 'Take Errand'
+	});
+    }
+
+    $scope.errandAction = function(){
+	var errandId = $scope.selectedErrand._id;
+
+	if(! $scope.selectedErrand.is_taken){
+	    Errand.take({id: errandId},{runnerId: $rootScope.user.id}, function(response){
+		//if errand is successfully taken, add errand id to runner's errands_taken list
+		if(response.status === HTTP_OK){
+		    User.modifyErrandsList({id: $rootScope.user.id}, {
+			method: 'add',
+			data:{
+			    errands_taken: errandId
+			}
+		    });
+		}
+	    });
+	} else {
+	    Errand.untake({id: errandId}, null, function(response){
+		if(response.status === HTTP_OK){
+		    User.modifyErrandsList({id: $rootScope.user.id}, {
+			method: 'remove',
+			data:{
+			    errands_taken: errandId
+			}
+		    });
+		}
+	    });
+	}
     }
 }]);

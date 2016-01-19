@@ -14,3 +14,11 @@ app.filter('nameFit', function(){
 		return input;
 	}
 });
+
+//turn JSON date to readable date string
+app.filter('toDate', function(){
+    return function(input){
+	var date = new Date(input);
+	return date.toString();
+    }
+});

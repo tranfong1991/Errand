@@ -23,7 +23,7 @@
           <!-- Populate multiple errand template by using ng-repeat -->
 	  <div class="row">
               <!-- Custom errand template using custom angular directive -->
-              <errand info="errand" ng-repeat="errand in errands"></errand>
+              <errand info="errand" ng-repeat="errand in errands" ng-click="getErrandInfo(errand._id)"></errand>
 	  </div>
 
           <!-- Pagination -->
@@ -49,6 +49,9 @@
 
     <!-- footer -->
     <% include ../partials/footer %>
+
+    <!-- errand modal  -->
+    <% include ../partials/errand-modal  %>
 
     <!-- jQuery -->
     <script src="js/shared/jquery.js"></script>

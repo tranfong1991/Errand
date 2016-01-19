@@ -546,7 +546,12 @@ body {
     width: 80px;
 }
 
-.take-errand{
+.profile-pic-big{
+    height: 120px;
+    width: 120px;
+}
+
+.errand-compensation{
     position: absolute;
     bottom: 15px;
     right: 25px;
