@@ -3,8 +3,12 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
     const HTTP_CREATED = 201;
     const HTTP_NOT_FOUND = 404;
 
-    $scope.errands = [];
-    $scope.currentLocation = {};
+    $scope.errands = result.docs;
+    $scope.totalItems = result.total;
+    $scope.currentPage = result.page;
+    $scope.maxSize = result.pages;
+    $scope.itemsPerPage = result.limit;
+    $scope.currentLocation = currentLocation;
 
     $scope.pageChanged = function(){
 	//use get() instead of query() because query() expects an array, but result is an object
@@ -22,23 +26,6 @@ app.controller('errandController', ['$scope', '$rootScope', 'Errand', 'User', '$
 	    $scope.itemsPerPage = result.limit;
 	});
     };
-
-    $scope.getCurrentLocation = function(){
-	//ip-api is used to get location given an IP address
-	$http.get('http://ip-api.com/json/' + ip)
-	.then(function(res){
-	    if(res.data.status === 'success'){
-		$scope.currentLocation = res.data;
-
-		//only called when location is known
-		$scope.pageChanged();
-	    }
-	    else $scope.currentLocation = "unknown";
-	});
-    }
-    
-    //called when the page finished loading to retrieve location based on client IP.
-    $scope.getCurrentLocation();
 
     $scope.login = function(){
 	FB.login(function(response){
