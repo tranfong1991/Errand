@@ -7,6 +7,10 @@ app.factory('Errand', function($resource){
 	    untake:{
 		method: 'DELETE',
 		url: '/api/errands/:id/take'
+	    },
+	    search:{
+		method: 'GET',
+		url: 'api/search'
 	    }
 	});
 });

@@ -2,8 +2,16 @@
 <html lang="en" ng-app="ErrandApp" >
   <head>
     <% include ../partials/head %>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/creative.css" type="text/css">  
   </head>
-  <body ng-controller="errandController">
+  <body ng-controller="searchController">
+    
+    <script>
+      var result = <%- JSON.stringify(response) %>;
+      var term = "<%= term %>";
+    </script>
 
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -19,14 +27,15 @@
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	  <form class="navbar-form navbar-left" role="search">
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
+	  
+	  <form class="navbar-form navbar-left" role="search" action="/search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" class="form-control" name="term" placeholder="Search">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
 	  </form>
-
+	  
 	  <ul class="nav navbar-nav navbar-right">
 	    <li id="login">
               <a href="#" ng-click="login()">Login with Facebook</a>
@@ -46,8 +55,49 @@
 	</div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav> 
+    
+    <div class="container">
+      <div class="row">
+    	<errand info = "errand" ng-click="getErrandInfo(errand._id)" ng-repeat="errand in errands"></errand>
+      </div>
+    </div>
 
-    <!-- <h1><%= term %></h1> -->
+    <!-- Pagination -->
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <pagination
+           total-items="totalItems"
+           ng-model="currentPage"
+           ng-change="pageChanged()"
+           max-size="maxSize"
+           items-per-page="itemsPerPage"
+           boundary-links="true"
+	   previous-text="Prev">
+        </pagination>
+      </div>
+    </div>
+
+    <!-- errand modal  -->
+    <% include ../partials/errand-modal  %>
+
+    <!-- scripts -->
+    <% include ../partials/foot %>
+
+    <!-- Modules -->
+    <script type="text/javascript" src="js/app.js"></script>
+    
+    <!-- Controllers -->
+    <script type="text/javascript" src="js/controllers/search-controller.js"></script>
+
+    <!-- Services -->
+    <script type="text/javascript" src="js/services/errand-service.js"></script>
+    <script type="text/javascript" src="js/services/auth-service.js"></script> 
+
+    <!-- Directives -->
+    <script type="text/javascript" src="js/directives/errand-directive.js"></script>    
+
+    <!-- Filters -->
+    <script type="text/javascript" src="js/filters.js"></script>
 
   </body>
 </html>
