@@ -2,6 +2,9 @@
 <html lang="en" ng-app="ErrandApp" >
   <head>
     <% include ../partials/head %>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/creative.css" type="text/css">  
   </head>
   <body ng-controller="errandController">
     <!-- navbar -->
@@ -53,28 +56,11 @@
     <!-- errand modal  -->
     <% include ../partials/errand-modal  %>
 
-    <!-- jQuery -->
-    <script src="js/shared/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/shared/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="js/shared/jquery.easing.min.js"></script>
-    <script src="js/shared/jquery.fittext.js"></script>
-    <script src="js/shared/wow.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/shared/creative.js"></script>
-
+    <!-- scripts -->
+    <% include ../partials/foot%>
+    
     <!-- Google Places API  -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2hdyDaASuFFv-wQUhnDZIA9TPK6UIiaM&libraries=places"></script>
-
-    <!-- AngularJS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
-    <script src="js/shared/ui-bootstrap-tpls-0.14.3.min.js"></script>
 
     <!-- Modules -->
     <script type="text/javascript" src="js/app.js"></script>

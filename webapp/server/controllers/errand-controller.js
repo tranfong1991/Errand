@@ -64,14 +64,22 @@ module.exports = {
     },
 
     search : function(req, res){
-	Errand.find({
+	Errand.paginate({
 	    $text:{
 		$search: req.query.term
 	    }
-	}).exec(function(err, result){
+	}, {
+	    page: (req.query.page ? req.query.page : 1),
+	    limit: (req.query.limit ? req.query.limit : 20),
+	    select: req.query.fields,
+	    populate: {
+		path: 'customer',
+		select: '-_id name profile_pic_url contact_info'
+	    }
+	}, function(err, result){
 	    if(err || result == null)
-		utils.handleNullResult(res);
-	    res.json(result);
+		utils.handleNullResult(res)
+	    else res.json(result);
 	});
     },
 

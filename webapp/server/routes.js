@@ -6,9 +6,6 @@ var router = require('express').Router();
 //===== REST API =====
 //====================
 
-//cannot use /api/errands/search because it thinks the word 'search' is the id,
-//resulting in search() will never be called
-router.get('/api/search', errandController.search);
 
 //==================
 //===== Errand =====
@@ -21,6 +18,7 @@ router.put('/api/errands/:id', errandController.update);
 router.delete('/api/errands/:id', errandController.remove);
 router.put('/api/errands/:id/take', errandController.take);
 router.delete('/api/errands/:id/take', errandController.untake);
+router.get('/api/search', errandController.search)  //again, don't use api/errands/search because it thinks search is the id, thus search() is never called. DUH!
 
 //================
 //===== User =====
@@ -38,6 +36,8 @@ router.delete('/api/users/:id', userController.remove);
 //===== Main Application =====
 //============================
 
+var Errand = require('./models/errand');
+
 //return homepage
 router.get('/', function(req, res){
     //get client ip for location lookup
@@ -50,9 +50,26 @@ router.get('/', function(req, res){
 
 //return search page
 router.get('/search', function(req, res){
-	res.render('pages/search', {
-		term:req.query.term
+    Errand.paginate({
+	$text:{
+	    $search: req.query.term
+	}
+    }, {
+	page: (req.query.page ? req.query.page : 1),
+	limit: (req.query.limit ? req.query.limit : 20),
+	select: 'customer description compensation',
+	populate: {
+	    path: 'customer',
+	    select: '-_id name profile_pic_url contact_info'
+	}
+    }, function(err, result){
+	if(err || result == null)
+	    res.render('pages/search');
+	else res.render('pages/search', {
+	    term: req.query.term,
+	    response: result
 	});
+    });
 });
 
 module.exports = router;
