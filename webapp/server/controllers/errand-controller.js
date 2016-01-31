@@ -42,12 +42,11 @@ module.exports = {
 		path: 'customer runner',	//populate customer and runner fields. Separated by space
 		select: '-_id name profile_pic_url contact_info'	//only populate name, profile_pic_url, and contact_info of the above 2 fields. Also separated by space
 	    }
-	},
-			function(err, result){
-			    if(err || result == null)
-				utils.handleNullResult(res);
-			    else res.json(result);
-			});
+	}, function(err, result){
+	    if(err || result == null)
+		utils.handleNullResult(res);
+	    else res.json(result);
+	});
     },
 
     listOne : function(req, res){
