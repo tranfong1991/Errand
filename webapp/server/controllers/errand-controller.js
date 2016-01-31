@@ -64,8 +64,6 @@ module.exports = {
     },
 
     search : function(req, res){
-	console.log("CALLED");
-	console.log(req.query);
 	Errand.paginate({
 	    $text:{
 		$search: req.query.term
