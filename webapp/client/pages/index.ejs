@@ -13,7 +13,10 @@
     <!-- header -->
     <% include ../partials/header %>
 
-    <script>ip = "<%= ip %>"</script>
+    <script>
+      var currentLocation =  <%- JSON.stringify(location) %>;
+      var result = <%- JSON.stringify(response) %>;
+    </script>
     
     <section id="trending">
       <div class="container">

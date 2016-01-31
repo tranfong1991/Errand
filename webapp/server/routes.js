@@ -1,6 +1,7 @@
 var errandController = require('./controllers/errand-controller');
 var userController = require('./controllers/user-controller');
 var router = require('express').Router();
+var request = require('request');
 
 //====================
 //===== REST API =====
@@ -43,8 +44,39 @@ router.get('/', function(req, res){
     //get client ip for location lookup
     var ip = req.headers['x-forwarded-for']||req.connection.remoteAddress;
 
-    res.render('pages/index', {
-	ip: ip
+    request('http://ip-api.com/json/' + ip, function(err, reply, body){
+	var json = JSON.parse(body);
+
+	if(json.status == 'success'){
+	    Errand.paginate({
+		$text:{
+		    $search: json.city 
+		}
+	    }, {
+		page: 1,
+		limit: 10,
+		select: 'customer description compensation',
+		populate: {
+		    path: 'customer runner',
+		    select: '-_id name profile_pic_url contact_info'
+		}
+	    }, function(err, result){
+		if(err || result == null)
+		    res.render('pages/index', {
+			location: json,
+			response: {}
+		    });
+		else res.render('pages/index', {
+		    location: json,
+		    response: result
+		});
+	    });
+	} else{
+	    res.render('pages/index', {
+		location: {},
+		response: {}
+	    });
+	}
     });
 });
 
