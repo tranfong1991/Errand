@@ -31,5 +31,12 @@ module.exports = {
 		    status: HTTP_CREATED,
 		    object_id: object._id
 		});
-	}
+	},
+    
+    handleSyntaxError: function(res){
+	res.json({
+	    status: HTTP_NOT_FOUND,
+	    msg: 'Syntax error!'
+	});
+    }
 }

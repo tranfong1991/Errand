@@ -11,22 +11,25 @@
                         <div class="modal-body">
                             <h2>Create Errand</h2>
                             <hr>
+			    
+			    <!-- have to put $root in front errand to indicate that errand is in $rootScope. -->
+			    <!-- necessary because errand is not defined in app.js yet, unlike selectedErrand in errand modal -->
 			    <form novalidate class="form-horizontal" role="form">
 			    	<div class="form-group">
 				     <label class="control-label" for="description">Description</label>
-				     <input class="form-control" ng-model="errand.description" type="text" id="description" placeholder="e.g. Buy a Big Mac">
+				     <input class="form-control" ng-model="$root.errand.description" type="text" id="description" placeholder="e.g. Buy a Big Mac">
 			    	</div>
 				<div class="form-group">
 				     <label class="control-label" for="location">Location</label>
-				     <input class="form-control" ng-model="errand.location" type="text" id="location" placeholder="e.g. College Station, TX" google-places>
+				     <input class="form-control" ng-model="$root.errand.location" type="text" id="location" placeholder="e.g. College Station, TX" google-places>
 				</div>
 				<div class="form-group">
 				     <label class="control-label" for="compensation">Compensation</label>
-				     <input class="form-control" ng-model="errand.compensation" type="number" id="compensation" placeholder="e.g. 10.00">
+				     <input class="form-control" ng-model="$root.errand.compensation" type="number" id="compensation" placeholder="e.g. 10.00">
 				</div>
 				<div class="form-group">
 				     <label class="control-label" for="finish-by">Finish by</label>
-				     <input class="form-control" ng-model="errand.finish_by" type="datetime-local" id="finish-by" placeholder="e.g. Jan 10, 2016 3:00pm">
+				     <input class="form-control" ng-model="$root.errand.finish_by" type="datetime-local" id="finish-by" placeholder="e.g. Jan 10, 2016 3:00pm">
 				</div>
 				<div class="form-group">
 				     <button ng-click="submit()" class="btn btn-primary" data-dismiss="modal">Submit</button>
