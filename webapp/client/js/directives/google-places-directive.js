@@ -10,8 +10,8 @@ app.directive('googlePlaces', function(){
 
 	    //register event to assign location value to errand object when user chooses one of the locations in the dropdown list
 	    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-		$scope.$apply(function() {
-                    $scope.errand.location = element.val();                
+		$rootScope.$apply(function() {
+                    $rootScope.errand.location = element.val();                
                 });
             }); 
 	}
