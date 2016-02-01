@@ -19,13 +19,4 @@ app.controller('searchController', ['$scope', 'Errand', function($scope, Errand)
 	    $scope.itemsPerPage = result.limit;
 	});
     };
-
-    $scope.getErrandInfo = function(id){
-	Errand.get({id: id}, function(result){
-	    $scope.selectedErrand = result;
-	    if(result.is_taken)
-		$scope.buttonText = 'Untake Errand';
-	    else $scope.buttonText = 'Take Errand'
-	});
-    }
 }]);

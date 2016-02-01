@@ -72,18 +72,25 @@ module.exports = {
     
     //combine add and delete errand. Because delete errand does not allow data in body, hence cannot know which errand to delete
     modifyErrandsList: function(req, res){
-	if(req.body.method === 'add'){
-	    User.update({id: req.params.id}, {$push: req.body.data}, function(err){
+	var method = req.body.method;
+	var json;
+
+	if(method !== 'add' && method !== 'remove')
+	    utils.handleSyntaxError(res);
+	else {
+	    if(method === 'add')
+		json = {
+		    $push : req.body.data
+		}
+	    else json = {
+		$pull : req.body.data
+	    }
+
+	    User.update({id: req.params.id}, json, function(err){
 		if(err)
 		    utils.handleUpdateError(res);
 		else utils.handleSuccess(res);
-	    });
-	} else if(req.body.method === 'remove'){
-	    User.update({id: req.params.id}, {$pull: req.body.data}, function(err){
-		if(err)
-		    utils.handleUpdateError(res);
-		else utils.handleSuccess(res);
-	    });    
+	    }); 
 	}
     }
 }
