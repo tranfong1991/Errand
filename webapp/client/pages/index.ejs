@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="css/creative.css" type="text/css">  
   </head>
   <body ng-controller="errandController">
-    <!-- navbar -->
-    <% include ../partials/navbar %>
-
-    <!-- header -->
-    <% include ../partials/header %>
-
-    <% include ../partials/create-modal %>
 
     <script>
       var currentLocation =  <%- JSON.stringify(location) %>;
       var result = <%- JSON.stringify(response) %>;
     </script>
+
+    <!-- navbar -->
+    <% include ../partials/navbar %>
+
+    <!-- header -->
+    <% include ../partials/header %>
     
     <section id="trending">
       <div class="container">
@@ -52,16 +51,17 @@
       </div>
     </section>
 
-    <!-- contact -->
+    <!-- Contact -->
     <% include ../partials/contact %>
 
-    <!-- footer -->
+    <!-- Footer -->
     <% include ../partials/footer %>
 
-    <!-- errand modal  -->
+    <!-- Modals -->
     <% include ../partials/errand-modal  %>
+    <% include ../partials/create-modal %>
 
-    <!-- scripts -->
+    <!-- Scripts -->
     <% include ../partials/foot%>
     
     <!-- Google Places API  -->
